@@ -26,7 +26,7 @@ class RoomTest < MiniTest::Test
   def test_playlist_starts_empty()
     assert_equal(0, @room1.number_of_songs())
   end
-  
+
   def test_has_max_number_of_guests()
     assert_equal(2, @room1.max_guests())
   end
@@ -68,5 +68,14 @@ class RoomTest < MiniTest::Test
     assert_equal(2, @room1.guest_count())
   end
 
+  def test_charge_guest_for_room()
+    @room1.charge_guest(@guest2)
+    assert_equal(5, @guest2.money())
+  end
+
+  def test_check_in_guest_and_charge_for_room()
+    @room2.check_in(@guest1)
+    assert_equal(5, @guest1.money())
+  end
 
 end

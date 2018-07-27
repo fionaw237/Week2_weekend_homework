@@ -18,7 +18,10 @@ class Room
   end
 
   def check_in(guest)
-    @guests << guest unless room_full?()
+    unless room_full?()
+      @guests << guest
+      charge_guest(guest)
+    end
   end
 
   def check_out()
@@ -31,6 +34,10 @@ class Room
 
   def room_full?()
     return @guests.count() == @max_guests
+  end
+
+  def charge_guest(guest)
+    guest.pay_for_room(@entry_fee)
   end
 
 
