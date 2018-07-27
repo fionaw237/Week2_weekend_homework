@@ -7,9 +7,9 @@ require_relative("../song")
 class RoomTest < MiniTest::Test
 
   def setup()
-    @guest1 = Guest.new("Fiona Wilson", 10)
-    @guest2 = Guest.new("Joanna Wilson", 15)
-    @guest3 = Guest.new("Louise Wilson", 20)
+    @guest1 = Guest.new("Fiona Wilson", 10, ["Neck Deep", "Motion Sickness"])
+    @guest2 = Guest.new("Joanna Wilson", 15, ["Biffy Clyro", "Folding Stars"])
+    @guest3 = Guest.new("Louise Wilson", 20, ["Green Day", "Basket Case"])
     @guests = [@guest1, @guest2, @guest3]
 
     @song1 = Song.new("Neck Deep", "Motion Sickness")
@@ -64,8 +64,10 @@ class RoomTest < MiniTest::Test
   end
 
   def test_cannot_check_in_guest_if_room_full
-    @guests.each {|guest| @room1.check_in(guest)}
+    @guests[0..1].each {|guest| @room1.check_in(guest)}
+    check_room_full = @room1.check_in(@guest3)
     assert_equal(2, @room1.guest_count())
+    assert_equal("Sorry, room is full!", check_room_full)
   end
 
   def test_charge_guest_for_room()

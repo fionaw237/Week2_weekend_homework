@@ -21,6 +21,8 @@ class Room
     unless room_full?()
       @guests << guest
       charge_guest(guest)
+    else
+      return "Sorry, room is full!"
     end
   end
 
