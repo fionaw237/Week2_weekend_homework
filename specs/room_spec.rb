@@ -86,6 +86,7 @@ class RoomTest < MiniTest::Test
   def test_check_in_guest_and_charge_for_room()
     @room2.check_in(@guest1)
     assert_equal(5, @guest1.money())
+    assert_equal(5, @room2.guest_money_spent())
   end
 
   def test_favourite_song_in_playlist()
