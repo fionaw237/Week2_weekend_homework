@@ -1,6 +1,8 @@
 class Room
 
-  def initialize(guests, playlist)
+  attr_reader :guests
+
+  def initialize()
     @guests = []
     @playlist = []
   end
@@ -11,6 +13,14 @@ class Room
 
   def number_of_songs()
     return @playlist.count
+  end
+
+  def check_in(guests)
+    @guests.concat(guests)
+  end
+
+  def check_out()
+    @guests.clear()
   end
 
 end
