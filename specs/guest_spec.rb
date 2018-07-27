@@ -1,11 +1,14 @@
 require("minitest/autorun")
 require("minitest/rg")
 require_relative("../guest")
+require_relative("../song")
+
 
 class GuestTest < MiniTest::Test
 
   def setup()
-    @guest = Guest.new("Fiona Wilson", 10, ["Neck Deep", "Motion Sickness"])
+    @song = Song.new("Neck Deep", "Motion Sickness")
+    @guest = Guest.new("Fiona Wilson", 10, @song)
   end
 
   def test_has_name()
@@ -17,7 +20,7 @@ class GuestTest < MiniTest::Test
   end
 
   def test_has_favourite_song()
-    result = @guest.get_favourite_song_artist() + ", " + @guest.get_favourite_song_title()
+    result = @guest.favourite_song.artist() + ", " + @guest.favourite_song.title()
     assert_equal("Neck Deep, Motion Sickness", result)
   end
 
