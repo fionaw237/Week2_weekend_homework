@@ -46,5 +46,13 @@ class Room
     guest.pay_for_room(@entry_fee)
   end
 
+  def favourite_song_in_playlist?(guest)
+    if @playlist.include?(guest.favourite_song())
+      guest.cheer()
+    else
+      return ":("
+    end
+  end
+
 
 end

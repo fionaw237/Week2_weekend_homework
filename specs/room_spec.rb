@@ -7,13 +7,14 @@ require_relative("../song")
 class RoomTest < MiniTest::Test
 
   def setup()
-    @guest1 = Guest.new("Fiona Wilson", 10, ["Neck Deep", "Motion Sickness"])
-    @guest2 = Guest.new("Joanna Wilson", 15, ["Biffy Clyro", "Folding Stars"])
-    @guest3 = Guest.new("Louise Wilson", 20, ["Green Day", "Basket Case"])
-    @guests = [@guest1, @guest2, @guest3]
-
     @song1 = Song.new("Neck Deep", "Motion Sickness")
-    @song2 = Song.new("Sum 41", "Fat Lip")
+    @song2 = Song.new("Blur", "Song 2")
+    @song3 = Song.new("Biffy Clyro", "Folding Stars")
+
+    @guest1 = Guest.new("Fiona Wilson", 10, @song1)
+    @guest2 = Guest.new("Joanna Wilson", 15, @song3)
+    @guest3 = Guest.new("Louise Wilson", 20, @song2)
+    @guests = [@guest1, @guest2, @guest3]
 
     @room1 = Room.new(2, 10)
     @room2 = Room.new(3, 5)
@@ -85,6 +86,18 @@ class RoomTest < MiniTest::Test
   def test_check_in_guest_and_charge_for_room()
     @room2.check_in(@guest1)
     assert_equal(5, @guest1.money())
+  end
+
+  def test_favourite_song_in_playlist()
+    @room1.add_song(@song1)
+    result = @room1.favourite_song_in_playlist?(@guest1)
+    assert_equal("WOOHOO!", result)
+  end
+
+  def test_favourite_song_not_in_playlist()
+    @room1.add_song(@song1)
+    result = @room1.favourite_song_in_playlist?(@guest2)
+    assert_equal(":(", result)
   end
 
 end
