@@ -1,8 +1,9 @@
 class Room
 
-  attr_reader :guests
+  attr_reader :max_guests
 
-  def initialize()
+  def initialize(max_guests)
+    @max_guests = max_guests
     @guests = []
     @playlist = []
   end
@@ -26,5 +27,14 @@ class Room
   def add_song(song)
     @playlist << song
   end
+
+  def check_capacity(guests)
+    if guests.count() <= @max_guests
+      return true
+    else
+      return false
+    end
+  end
+
 
 end
