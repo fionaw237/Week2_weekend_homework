@@ -16,8 +16,8 @@ class Room
     return @playlist.count
   end
 
-  def check_in(guests)
-    @guests.concat(guests)
+  def check_in(guest)
+    @guests << guest
   end
 
   def check_out()
@@ -28,12 +28,8 @@ class Room
     @playlist << song
   end
 
-  def check_capacity(guests)
-    if guests.count() <= @max_guests
-      return true
-    else
-      return false
-    end
+  def room_full?()
+    return @guests.count() < @max_guests ? false : true
   end
 
 

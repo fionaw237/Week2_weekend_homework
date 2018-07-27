@@ -32,8 +32,8 @@ class RoomTest < MiniTest::Test
   end
 
   def test_can_check_in_guests()
-    @room1.check_in(@guests)
-    assert_equal(3, @room1.guest_count())
+    @guests.each {|guest| @room2.check_in(guest)}
+    assert_equal(3, @room2.guest_count())
   end
 
   def test_can_check_out_guests()
@@ -47,14 +47,16 @@ class RoomTest < MiniTest::Test
     assert_equal(2, @room1.number_of_songs())
   end
 
-  def test_room_big_enough__true()
-    result = @room2.check_capacity(@guests)
-    assert_equal(true, result)
+  def test_room_full__true()
+    @room1.check_in(@guest1)
+    @room1.check_in(@guest2)
+    assert_equal(true, @room1.room_full?())
   end
 
-  def test_room_big_enough__false()
-    result = @room1.check_capacity(@guests)
-    assert_equal(false, result)
+  def test_room_full__false()
+    @room2.check_in(@guest1)
+    @room2.check_in(@guest2)
+    assert_equal(false, @room2.room_full?())
   end
 
 
