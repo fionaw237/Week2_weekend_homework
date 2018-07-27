@@ -59,5 +59,10 @@ class RoomTest < MiniTest::Test
     assert_equal(false, @room2.room_full?())
   end
 
+  def test_cannot_check_in_guest_if_room_full
+    @guests.each {|guest| @room1.check_in(guest)}
+    assert_equal(2, @room1.guest_count())
+  end
+
 
 end

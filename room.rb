@@ -17,7 +17,7 @@ class Room
   end
 
   def check_in(guest)
-    @guests << guest
+    @guests << guest unless room_full?()
   end
 
   def check_out()
@@ -29,7 +29,7 @@ class Room
   end
 
   def room_full?()
-    return @guests.count() < @max_guests ? false : true
+    return @guests.count() == @max_guests
   end
 
 
