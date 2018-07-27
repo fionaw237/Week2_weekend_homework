@@ -23,4 +23,8 @@ class Room
     @guests.clear()
   end
 
+  def add_song(song)
+    @playlist << song
+  end
+
 end
