@@ -16,6 +16,8 @@ class Guest
     return "WOOHOO!"
   end
 
-
+  def buy_drink(drink)
+    @money -= drink.price()
+  end
 
 end

@@ -2,6 +2,7 @@ require("minitest/autorun")
 require("minitest/rg")
 require_relative("../guest")
 require_relative("../song")
+require_relative("../drink")
 
 
 class GuestTest < MiniTest::Test
@@ -9,6 +10,7 @@ class GuestTest < MiniTest::Test
   def setup()
     @song = Song.new("Neck Deep", "Motion Sickness")
     @guest = Guest.new("Fiona Wilson", 10, @song)
+    @drink = Drink.new("Irn Bru", 1.5)#, 1.0)
   end
 
   def test_has_name()
@@ -31,6 +33,11 @@ class GuestTest < MiniTest::Test
 
   def test_can_cheer()
     assert_equal("WOOHOO!", @guest.cheer())
+  end
+
+  def test_can_buy_drink()
+    @guest.buy_drink(@drink)
+    assert_equal(8.5, @guest.money())
   end
 
 end
