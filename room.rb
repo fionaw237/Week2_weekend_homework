@@ -1,6 +1,6 @@
 class Room
 
-  attr_reader :max_guests, :entry_fee, :guest_money_spent
+  attr_reader :max_guests, :entry_fee, :guest_money_spent, :tab
 
   def initialize(max_guests, entry_fee)
     @max_guests = max_guests
@@ -8,6 +8,7 @@ class Room
     @guests = []
     @playlist = []
     @guest_money_spent = 0
+    @tab = 0
   end
 
   def guest_count()

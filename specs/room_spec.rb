@@ -101,4 +101,14 @@ class RoomTest < MiniTest::Test
     assert_equal(":(", result)
   end
 
+  def test_track_guest_spending()
+    @room1.charge_guest(@guest1)
+    @room1.charge_guest(@guest2)
+    assert_equal(20, @room1.guest_money_spent())
+  end
+
+  def test_tab_starts_at_0()
+    assert_equal(0, @room1.tab())
+  end
+
 end
