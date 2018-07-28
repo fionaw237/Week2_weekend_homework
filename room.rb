@@ -57,6 +57,9 @@ class Room
     end
   end
 
+  def add_to_tab(drink)
+    @tab += drink.price()
+  end
 
 
 end

@@ -3,6 +3,8 @@ require("minitest/rg")
 require_relative("../room")
 require_relative("../guest")
 require_relative("../song")
+require_relative("../drink")
+
 
 class RoomTest < MiniTest::Test
 
@@ -18,6 +20,8 @@ class RoomTest < MiniTest::Test
 
     @room1 = Room.new(2, 10)
     @room2 = Room.new(3, 5)
+
+
   end
 
   def test_room_starts_empty()
@@ -109,6 +113,12 @@ class RoomTest < MiniTest::Test
 
   def test_tab_starts_at_0()
     assert_equal(0, @room1.tab())
+  end
+
+  def test_can_add_to_tab()
+    drink = Drink.new("Irn Bru", 1.5)
+    @room1.add_to_tab(drink)
+    assert_equal(1.5, @room1.tab())
   end
 
 end
