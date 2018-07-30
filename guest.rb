@@ -9,6 +9,7 @@ class Guest
   end
 
   def pay_for_room(entry_fee)
+    #should check that they can afford to pay?
     @money -= entry_fee
   end
 
@@ -17,7 +18,10 @@ class Guest
   end
 
   def buy_drink(drink)
+    #should check they can afford to pay
     @money -= drink.price()
   end
+
+  #could add a pay tab function?
 
 end
